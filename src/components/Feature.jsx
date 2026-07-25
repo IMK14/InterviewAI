@@ -1,43 +1,42 @@
-function Features() {
-  const features = [
-    {
-      title: "AI Interview",
-      description: "Practice interviews with AI-generated questions.",
-    },
-    {
-      title: "Resume Analysis",
-      description: "Upload your resume and get instant feedback.",
-    },
-    {
-      title: "Performance Analytics",
-      description: "Track your interview scores and improve.",
-    },
-  ];
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../firebase/firebase";
+
+import Sidebar from "../components/layout/Sidebar";
+import Topbar from "../components/layout/Topbar";
+import WelcomeCard from "../components/dashboard/WelcomeCard";
+import StatsCard from "../components/dashboard/StatsCard";
+
+function Dashboard() {
+  const [userEmail, setUserEmail] = useState("");
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUserEmail(user.email);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
-    <section className="bg-slate-900 text-white py-20 px-10">
-      <h2 className="text-4xl font-bold text-center text-cyan-400 mb-12">
-        Why Choose InterviewAI?
-      </h2>
+    <div className="flex bg-slate-950 text-white min-h-screen">
+      <Sidebar />
 
-      <div className="grid md:grid-cols-3 gap-8">
-        {features.map((feature, index) => (
-          <div
-            key={index}
-            className="bg-slate-800 p-8 rounded-2xl shadow-lg hover:scale-105 transition"
-          >
-            <h3 className="text-2xl font-bold mb-4 text-cyan-300">
-              {feature.title}
-            </h3>
+      <main className="flex-1 p-10">
+        <Topbar />
 
-            <p className="text-gray-300">
-              {feature.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
+        <WelcomeCard email={userEmail} />
+
+        <div className="grid md:grid-cols-3 gap-6 mt-8">
+          <StatsCard title="Interviews" value="0" color="text-cyan-400" />
+          <StatsCard title="AI Score" value="--" color="text-green-400" />
+          <StatsCard title="Resume Score" value="--" color="text-yellow-400" />
+        </div>
+      </main>
+    </div>
   );
 }
 
-export default Features;
+export default Dashboard;
