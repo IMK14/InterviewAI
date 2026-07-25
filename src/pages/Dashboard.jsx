@@ -1,10 +1,23 @@
-import { signOut } from "firebase/auth";
+import { signOut, onAuthStateChanged } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 
 function Dashboard() {
   const navigate = useNavigate();
+  const [userEmail, setUserEmail] = useState("");
+
+
+  useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setUserEmail(user.email);
+    }
+  });
+
+  return () => unsubscribe();
+}, []);
 
   const handleLogout = async () => {
     await signOut(auth);
@@ -38,12 +51,35 @@ function Dashboard() {
       <div className="max-w-6xl mx-auto px-8 py-12">
 
         <h1 className="text-5xl font-bold text-cyan-400">
-          Welcome 👋
+       Welcome 👋
         </h1>
 
-        <p className="text-gray-400 mt-3 text-lg">
-          Ready to master your next interview?
+        <p className="text-xl text-gray-300 mt-4">
+       {userEmail}
         </p>
+
+        <p className="text-gray-400 mt-2 text-lg">
+        Ready to master your next interview?
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10">
+
+        <div className="bg-slate-900 rounded-2xl p-6 shadow-lg">
+         <h3 className="text-gray-400 text-lg">Interviews Taken</h3>
+         <p className="text-4xl font-bold text-cyan-400 mt-3">0</p>
+         </div>
+
+         <div className="bg-slate-900 rounded-2xl p-6 shadow-lg">
+         <h3 className="text-gray-400 text-lg">Average AI Score</h3>
+         <p className="text-4xl font-bold text-green-400 mt-3">--</p>
+         </div>
+
+          <div className="bg-slate-900 rounded-2xl p-6 shadow-lg">
+         <h3 className="text-gray-400 text-lg">Resume Score</h3>
+         <p className="text-4xl font-bold text-yellow-400 mt-3">--</p>
+         </div>
+
+         </div>
 
         <div className="grid md:grid-cols-2 gap-8 mt-12">
 
