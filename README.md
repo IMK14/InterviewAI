@@ -79,7 +79,35 @@ InterviewAI is designed to work on:
 - Mobile browsers
 
 ## Technology Stack
+## Screenshots
 
+### Home Page
+
+![InterviewAI Home](screenshots/home.png)
+
+### Dashboard
+
+![InterviewAI Dashboard](screenshots/dashboard.png)
+
+### Interview Studio
+
+![Interview Studio](screenshots/interview-studio.png)
+
+### Interview Session
+
+![Interview Session](screenshots/interview-session.png)
+
+### Interview Results
+
+![Interview Results](screenshots/results.png)
+
+### Resume Lab
+
+![Resume Lab](screenshots/resume-lab.png)
+
+### Mobile View
+
+![InterviewAI Mobile](screenshots/mobile-home.png)
 ### Frontend
 
 - React
