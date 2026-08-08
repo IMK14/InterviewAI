@@ -6,7 +6,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import InterviewStudio from "./pages/InterviewStudio";
-import InterviewSession from "./pages/InterviewSession";
+import InterviewSession from "./pages/interviewSession";
 import InterviewHistory from "./pages/InterviewHistory";
 import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import Results from "./pages/Results";
