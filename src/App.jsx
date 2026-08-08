@@ -7,7 +7,11 @@ import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import InterviewStudio from "./pages/InterviewStudio";
 import InterviewSession from "./pages/InterviewSession";
+import InterviewHistory from "./pages/InterviewHistory";
+import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import Results from "./pages/Results";
+import GeminiTest from "./pages/GeminiTest";
+
 
 function App() {
   return (
@@ -53,6 +57,30 @@ function App() {
           </ProtectedRoute>
         }
       />
+        <Route
+         path="/history"
+         element={
+         <ProtectedRoute>
+         <InterviewHistory />
+          </ProtectedRoute>
+        }
+      />
+         <Route
+         path="/resume-analyzer"
+         element={
+         <ProtectedRoute>
+         <ResumeAnalyzer />
+         </ProtectedRoute>
+         }
+/> 
+         <Route
+         path="/gemini-test"
+         element={
+         <ProtectedRoute>
+         <GeminiTest />
+         </ProtectedRoute>
+         }
+/>
     </Routes>
   );
 }
