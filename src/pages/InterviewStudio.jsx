@@ -11,10 +11,31 @@ function InterviewStudio() {
   const navigate = useNavigate();
 
   const [role, setRole] = useState("Machine Learning Engineer");
-  const [company, setCompany] = useState("General");
-  const [difficulty, setDifficulty] = useState("Medium");
-  const [mode, setMode] = useState("Text");
-  const [duration, setDuration] = useState("20 Minutes");
+const [company, setCompany] = useState("General");
+
+const [difficulty, setDifficulty] = useState(() => {
+  const saved = JSON.parse(
+    localStorage.getItem("appSettings") || "null"
+  );
+
+  return saved?.defaultDifficulty || "Medium";
+});
+
+const [mode, setMode] = useState(() => {
+  const saved = JSON.parse(
+    localStorage.getItem("appSettings") || "null"
+  );
+
+  return saved?.defaultMode || "Text";
+});
+
+const [duration, setDuration] = useState(() => {
+  const saved = JSON.parse(
+    localStorage.getItem("appSettings") || "null"
+  );
+
+  return saved?.defaultDuration || "20 Minutes";
+});
 
   const questionBanks = {
     "Machine Learning Engineer": mlQuestions,

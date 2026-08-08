@@ -6,21 +6,37 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import InterviewStudio from "./pages/InterviewStudio";
-import InterviewSession from "./pages/interviewSession";
+import InterviewSession from "./pages/InterviewSession";
 import InterviewHistory from "./pages/InterviewHistory";
 import ResumeAnalyzer from "./pages/ResumeAnalyzer";
 import Results from "./pages/Results";
 import GeminiTest from "./pages/GeminiTest";
-
+import Profile from "./pages/Profile";
+import Settings from "./pages/Settings";
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
 
-      <Route path="/login" element={<Login />} />
+      {/* Public Pages */}
 
-      <Route path="/signup" element={<Signup />} />
+      <Route
+        path="/"
+        element={<Home />}
+      />
+
+      <Route
+        path="/login"
+        element={<Login />}
+      />
+
+      <Route
+        path="/signup"
+        element={<Signup />}
+      />
+
+
+      {/* Protected Pages */}
 
       <Route
         path="/dashboard"
@@ -57,30 +73,60 @@ function App() {
           </ProtectedRoute>
         }
       />
-        <Route
-         path="/history"
-         element={
-         <ProtectedRoute>
-         <InterviewHistory />
+
+      <Route
+        path="/history"
+        element={
+          <ProtectedRoute>
+            <InterviewHistory />
           </ProtectedRoute>
         }
       />
-         <Route
-         path="/resume-analyzer"
-         element={
-         <ProtectedRoute>
-         <ResumeAnalyzer />
-         </ProtectedRoute>
-         }
-/> 
-         <Route
-         path="/gemini-test"
-         element={
-         <ProtectedRoute>
-         <GeminiTest />
-         </ProtectedRoute>
-         }
-/>
+
+      {/* Resume Lab */}
+
+      <Route
+        path="/resume"
+        element={
+          <ProtectedRoute>
+            <ResumeAnalyzer />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Gemini Test */}
+
+      <Route
+        path="/gemini-test"
+        element={
+          <ProtectedRoute>
+            <GeminiTest />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Profile */}
+
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Settings */}
+
+      <Route
+        path="/settings"
+        element={
+          <ProtectedRoute>
+            <Settings />
+          </ProtectedRoute>
+        }
+      />
+
     </Routes>
   );
 }
