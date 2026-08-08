@@ -52,10 +52,10 @@ function Dashboard() {
   }, []);
 
   return (
-    <div className="flex bg-slate-950 text-white min-h-screen">
+    <div className="flex  flex-col md:flex-row bg-slate-950 text-white min-h-screen">
       <Sidebar />
 
-      <main className="flex-1 p-10">
+      <main className="flex-1 min-w-0 p-4 sm:p-6 md:p-10">
         <Topbar />
 
         <WelcomeCard email={userEmail} />
